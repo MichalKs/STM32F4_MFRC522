@@ -22,6 +22,7 @@
 #include <led.h>
 #include <comm.h>
 #include <keys.h>
+#include <mfrc522.h>
 
 #define SYSTICK_FREQ 1000 ///< Frequency of the SysTick set at 1kHz.
 #define COMM_BAUD_RATE 115200UL ///< Baud rate for communication with PC
@@ -60,13 +61,13 @@ int main(void) {
   LED_Init(LED5); // Add nonexising LED for test
   LED_ChangeState(LED5, LED_ON);
 
-//  KEYS_Init(); // Initialize matrix keyboard
-
   uint8_t buf[255]; // buffer for receiving commands from PC
   uint8_t len;      // length of command
 
   // test another way of measuring time delays
   uint32_t softTimer = TIMER_GetTime(); // get start time for delay
+
+  MFRC522_Init();
 
   while (1) {
 
@@ -96,7 +97,6 @@ int main(void) {
     }
 
     TIMER_SoftTimersUpdate(); // run timers
-//    KEYS_Update(); // run keyboard
   }
 }
 
