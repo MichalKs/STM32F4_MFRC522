@@ -126,6 +126,6 @@ void softTimerCallback(void) {
 
   }
 
-  println("Test string sent from STM32F4!!!"); // Print test string
+//  println("Test string sent from STM32F4!!!"); // Print test string
   counter++;
 }
